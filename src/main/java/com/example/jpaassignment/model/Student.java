@@ -6,7 +6,18 @@ import java.util.Set;
 
 @Entity
 @Table(name = "students")
+@NamedQuery(
+        name = "Student.findWithMoreThanNCourses",
+        query = """
+        SELECT s
+        FROM Student s
+        JOIN s.enrollments e
+        GROUP BY s
+        HAVING COUNT(e) > :count
+    """
+)
 public class Student {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +25,7 @@ public class Student {
 
     private String name;
 
-    // One Student -> One Profile (inverse side)
+    // One Student One Profile (inverse)
     @OneToOne(
             mappedBy = "student",
             cascade = CascadeType.ALL,
@@ -24,7 +35,7 @@ public class Student {
 
     private Profile profile;
 
-    // One Student -> Many Enrollments
+    // One Student  Many Enrollments
     @OneToMany(
             mappedBy = "student",
             cascade = CascadeType.ALL,
@@ -38,7 +49,7 @@ public class Student {
         this.name = name;
     }
 
-    // Helper method (VERY IMPORTANT)
+
     public void addEnrollment(Enrollment e) {
         enrollments.add(e);
         e.setStudent(this);
@@ -49,7 +60,7 @@ public class Student {
         e.setStudent(null);
     }
 
-    // Getters & Setters
+
     public Long getId() {
         return id;
     }

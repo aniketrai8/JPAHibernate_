@@ -33,7 +33,28 @@ public class CourseService {
 
     }
 
+    public Course createCourse(Course course) {
+        return courseRepository.save(course);
+    }
 
+    public Course getCourse(Long id) {
+        return courseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+    }
+
+    public List<Course> getAllCourses() {
+        return courseRepository.findAll();
+    }
+
+    public Course updateCourse(Long id, Course updated) {
+        Course course = getCourse(id);
+        course.setHeading(updated.getHeading());
+        return courseRepository.save(course);
+    }
+
+    public void deleteCourse(Long id) {
+        courseRepository.deleteById(id);
+    }
 
 
 }

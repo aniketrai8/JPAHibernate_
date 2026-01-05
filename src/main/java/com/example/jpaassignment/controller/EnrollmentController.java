@@ -1,6 +1,7 @@
 package com.example.jpaassignment.controller;
 
 import com.example.jpaassignment.model.Enrollment;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.example.jpaassignment.service.EnrollmentService;
 
@@ -19,6 +20,7 @@ public class EnrollmentController {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public Enrollment enroll(
         @RequestParam Long studentId,
