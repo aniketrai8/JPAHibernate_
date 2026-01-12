@@ -1,5 +1,6 @@
 package com.example.jpaassignment.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,14 +26,14 @@ public class Student {
 
     private String name;
 
-    // One Student One Profile (inverse)
+    // One Student One Profile (inverse side)
     @OneToOne(
-            mappedBy = "student",
+            mappedBy = "student", //
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-
+    @JsonManagedReference
     private Profile profile;
 
     // One Student  Many Enrollments

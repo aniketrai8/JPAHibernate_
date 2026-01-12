@@ -21,7 +21,7 @@ public class CourseController {
 
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/courses")
     public Course createCourse(
         @RequestParam String heading,
         @RequestBody List<String>topics

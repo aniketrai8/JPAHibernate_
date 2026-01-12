@@ -1,5 +1,6 @@
 package com.example.jpaassignment.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 
@@ -17,6 +18,7 @@ public class Profile {
     private String address;
     @OneToOne
     @JoinColumn(name = "student_id", unique = true)
+    @JsonBackReference
     private Student student;
 
     public Profile() {}

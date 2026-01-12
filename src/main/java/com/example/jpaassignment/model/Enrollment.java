@@ -19,8 +19,9 @@ public class Enrollment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="course_id",nullable = false)
     private Course course;
-
     private String grade;
+
+    //holds both foreign key
     public Enrollment(){}
     public Enrollment(Student student,Course course){
         this.student= student;

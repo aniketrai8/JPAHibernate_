@@ -71,7 +71,7 @@ public class Course {
     public String toString() {
         return "Course{" + "id=" + id + ", title='" + heading + '\'' + '}';
 
-        //curd operations can be added here
+
     }
 
 }
