@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager; //helps to verify username and password
     private final JwtUtil jwtUtil;
 
     public AuthController(AuthenticationManager authenticationManger, JwtUtil jwtUtil ){

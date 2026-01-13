@@ -47,7 +47,7 @@ public class SecurityConfig {
     public  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable) //cross-site-request-forgery
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/swagger-ui/**",
@@ -66,6 +66,7 @@ public class SecurityConfig {
 
     @Bean
     //Authentication
+    //helps to store the user or admin type information is stored
     public UserDetailsService userDetailsService() {
 
         UserDetails student = User
@@ -80,7 +81,7 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(student, admin);
+        return new InMemoryUserDetailsManager(student, admin); //used to store users in memory
     }
 
 
